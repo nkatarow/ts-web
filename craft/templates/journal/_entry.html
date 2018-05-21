@@ -1,0 +1,50 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	<article>
+		{% set mobileHero = entry.mobileHeroImage.first() %}
+		{% set hero = entry.heroImage.first() %}
+
+		<style>
+			{% if mobileHero %}
+				.hero { background-image: url({{ mobileHero.url }}); }
+			{% else %}
+				.hero { background-image: url({{ hero.url }}); }
+			{% endif %}
+
+			@media screen and (min-width: 750px) {
+				.hero { background-image: url({{ hero.url }}); }
+			}
+		</style>
+		<div class="hero" style="color: {{ entry.heroFontColor }};" data-color="{{ entry.heroFontColor }}" data-font-color="{{ entry.heroFontColor }}"></div>
+
+		<a href="/journal" title="Back to previous page" class="back"><span class="icon-x"></span></a>
+
+		<section class="hero-copy reveal" style="color: {{ entry.heroFontColor }};">
+			<h1 class="h2 caps title">{{ entry.title }}</h1>
+			{% set categories = entry.journalCategory %}
+			<p class="large med date">{{ entry.postDate.format('m/Y') }}</p>
+			<p class="large">{% for category in categories %}{{ category.title }}{% endfor %}</p>
+		</section>
+
+		<div style="margin-top: 100vh;">
+			{% include '/partials/_modules.html' %}
+		</div>
+
+		{% set params = craft.entries.section('journalArticles') %}
+		{% set nextEntry = entry.getNext(params) %}
+		{% if nextEntry == null %}
+			{% set nextEntry = craft.entries.section('journalArticles').first() %}
+		{% endif %}
+
+		{% set nextImage = nextEntry.ctaImage.first() %}
+		<a href="/journal/{{ nextEntry.slug }}" title="Read about {{ nextEntry.title }}" class="cta next-entry" style="background-image: url({{ nextImage.url }});">
+			<div class="shade">
+				<div class="text reveal">
+					<h3 class="large margin-bottom">Next Article</h3>
+					<p class="h3 caps">{{ nextEntry.title }}</p>
+				</div>
+			</div>
+		</a>
+	</article>
+{% endblock %}

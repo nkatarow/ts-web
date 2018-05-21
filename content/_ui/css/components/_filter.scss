@@ -1,0 +1,38 @@
+/* ==========================================================================
+   COMPONENTS/_FILTER.SCSS
+   ========================================================================== */
+
+.filter-overlay {
+	background-color: $white-trans;
+	height: 100vh;
+	opacity: 0;
+	padding: 0 5%;
+	position: fixed;
+	top: 0;
+	transition: opacity 250ms linear;
+	width: 100vw;
+	z-index: -1;
+
+	&.active { opacity: 1; }
+
+	.filter-list {
+		position: absolute;
+		bottom: 15%;
+		opacity: 0;
+		transition: opacity 250ms linear, padding-top 250ms linear;
+
+		&.active { opacity: 1; }
+
+		li {
+			overflow: hidden;
+
+			a {
+				color: $off-black;
+
+				&.active,
+				&:hover,
+				&:focus { color: $blue; }
+			}
+		}
+	}
+}

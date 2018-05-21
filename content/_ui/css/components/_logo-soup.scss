@@ -1,0 +1,45 @@
+/* ==========================================================================
+   COMPONENTS/_LOGO-SOUP.SCSS
+   ========================================================================== */
+
+.logo-soup {
+	padding: 0;
+	background-color: $off-white;
+	text-align: center;
+
+	&.dark {
+		background-color: $black;
+		color: $white;
+	}
+
+	.h3 {
+		margin-bottom: $space-and-half;
+		padding: 0 5%;
+		text-align: left;
+	}
+
+	.flex {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0;
+
+		.logo-img {
+			margin-bottom: 5%;
+			padding: 0 5%;
+			width: 50%;
+		}
+	}
+}
+
+
+@media screen and (min-width: $bp-med) {
+	.logo-soup {
+		.flex {
+			.logo-img {
+				width: 25%;
+			}
+		}
+
+	}
+}

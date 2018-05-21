@@ -1,0 +1,47 @@
+/* ==========================================================================
+   BASE/_LAYOUT.SCSS
+   ========================================================================== */
+
+.js-main { transition: opacity 250ms linear; }
+
+// Containers
+.dark {
+	background-color: $black;
+	color: $white;
+
+	a {
+		color: $white;
+
+		&:hover,
+		&:focus {
+			color: $blue;
+		}
+	}
+}
+
+.flex {
+	padding: 0 5%;
+
+	.half:first-child { margin-bottom: $space*4; }
+}
+
+@media screen and (min-width: $bp-large) {
+	// Common Columns
+	.flex {
+		display: flex;
+		padding-left: 2.5%;
+		padding-right: 2.5%;
+
+		.half {
+			padding: 0 2.5%;
+			width: 50%;
+
+			&:first-child { margin-bottom: 0; }
+		}
+
+		.third {
+			padding: 0 2.5%;
+			width: 33.333333%;
+		}
+	}
+}

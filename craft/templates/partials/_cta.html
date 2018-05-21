@@ -1,0 +1,22 @@
+{% if entry.cta %}
+	{% for row in entry.cta %}
+		{% if row.backgroundImage|length %}
+			{% set image = row.backgroundImage.first() %}
+			{% set imageUrl = image.url %}
+		{% else %}
+			{% set imageUrl = '' %}
+		{% endif %}
+
+		<a href="{{ row.linkUrl }}" title="Read about {{ row.header }}" class="cta" style="background-image: url({{ imageUrl }});">
+			<div class="shade">
+				<div class="text">
+					<h2 class="h3 caps">{{ row.header|nl2br }}</h2>
+					{% if row.subtext != '' %}
+						<p class="large">{{ row.subtext|nl2br }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</a>
+
+	{% endfor %}
+{% endif %}

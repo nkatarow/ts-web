@@ -1,0 +1,52 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	{% set entry = craft.entries.id(44).first() %}
+	{% set catSlug = craft.request.getSegment(2) %}
+
+	{% if catSlug != '' %}
+		{% set category = craft.categories.slug(catSlug).first() %}
+		{% set entries = craft.entries.section('journalArticles').relatedTo(category) %}
+		{% set categoryTitle = category.title %}
+		<h1 class="offscreen">{{ categoryTitle }} | Journal</h1>
+	{% else %}
+		{% set entries = craft.entries.section('journalArticles') %}
+		{% set categoryTitle = 'All' %}
+		<h1 class="offscreen">Journal</h1>
+	{% endif %}
+
+
+	<a href="#" id="filter-trigger" title="Filter Entries" class="large med caps">Filter <span class="active-filter">{{ categoryTitle }}</span></a>
+
+	<aside class="filter-overlay">
+		<ul class="filter-list">
+			<li><a href="/journal" title="View all entries" class="h2 caps{% if catSlug == '' %} active{% endif %} filter" data-color="#fff">{% if catSlug == '' %}&mdash; {% endif %}All</a></li>
+			{% for entry in craft.categories.group('journal').find() %}
+				<li><a href="/journal/{{ entry.slug }}" title="View {{ entry.title }} entries" class="h2 caps{% if entry.slug == catSlug %} active{% endif %} filter" data-color="#fff">{% if entry.slug == catSlug %}&mdash; {% endif %}{{ entry.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</aside>
+
+	<section class="journal-list">
+		{% for entry in entries %}
+			<article class="reveal">
+				<a href="/journal/{{ entry.slug }}" title="Read {{ entry.title }}" data-color="{{ entry.highlightColor }}">
+					<div class="img">
+						{% set img = entry.listImage.first() %}
+						{% if img %}
+							<img src="{{ img.url }}" class="lazy" alt="{{ img.title }}" />
+						{% endif %}
+					</div>
+
+					<div class="info">
+						{% set categories = entry.journalCategory %}
+						<p class="large">{{ entry.postDate.format('m/Y') }} &mdash; {% for category in categories %}{{ category.title }}{% endfor %}</p>
+						<h2 class="large med">{{ entry.title }}</h2>
+					</div>
+				</a>
+			</article>
+		{% endfor %}
+	</section>
+
+	{% include '/partials/_cta.html' %}
+{% endblock %}

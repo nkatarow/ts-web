@@ -1,0 +1,35 @@
+/* ==========================================================================
+   COMPONENTS/_LOADING.SCSS
+   ========================================================================== */
+
+#home-loading {
+	background-color: $black;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	// z-index: 105;
+
+	img {
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		width: 30%;
+	}
+}
+
+.progress {
+    background: $blue;
+	top: 0;
+    display: block;
+    height: 4px;
+	position: absolute;
+    text-align: center;
+    transition: width 250ms;
+    width: 0;
+}
+
+@media screen and (min-width: $bp-large) {
+	.progress { height: 8px; }
+}

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   COMPONENTS/_STUDIO.SCSS
+   ========================================================================== */
+
+.studio-landing { margin-top: 100px; }
+
+#adjective .blue:hover,
+#adjective .blue:focus {
+	cursor: pointer;
+}
+
+#team {
+	padding-top: 10%;
+
+	h2 { padding: 0 5% 0; }
+}
+
+.team-list {
+	padding: 100px 0;
+
+	li {
+		margin-bottom: $space*4;
+
+		img { padding: 0 20%; }
+
+		.info {
+			padding: $space-double 5%;
+
+			p { margin-bottom: 0; }
+		}
+	}
+}
+
+.offering-hero {
+	background-color: $blue;
+	color: $white;
+	padding: 100px 0 10%;
+
+	.title { padding: 0 5% 10%; }
+
+	a {
+		color: $gray;
+
+		&:hover,
+		&:focus {
+			color: $white;
+		}
+	}
+}
+
+.featured-projects {
+	padding: 10% 0;
+
+	h2 { padding: 0 5%; }
+
+	&.dark .work-list article .info { color: $white; }
+}
+
+.offerings a {
+	color: $black;
+
+	&.active,
+	&:hover,
+	&:focus { color: $blue; }
+}
+
+
+@media screen and (min-width: $bp-large) {
+	.studio-landing { margin-top: 240px; }
+
+	.team-list {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+
+		li {
+			margin: 0;
+			padding: 0 5%;
+			position: relative;
+			width: 33.33%;
+
+			> div { padding: 15% 0; }
+
+			img { padding: 0; }
+
+			.info {
+				margin: 0;
+				padding: 5% 0;
+			}
+		}
+	}
+
+	.offering-hero { padding-top: 240px; }
+}

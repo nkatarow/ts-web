@@ -1,0 +1,44 @@
+/* ==========================================================================
+   COMPONENTS/_CTA.SCSS
+   ========================================================================== */
+
+
+.cta {
+	background-size: cover;
+	background-position: center center;
+	color: $off-white;
+	display: block;
+
+	.shade {
+		height: 100%;
+		padding: 10% 5% 12.5%;
+		transition: background-color 250ms linear;
+		width: 100%;
+	}
+
+	&:hover,
+	&:focus {
+		color: $white;
+	}
+
+	.text h2 { margin-bottom: $space; }
+
+	&.next-entry {
+		.text h2 { margin-bottom: 0; }
+	}
+}
+
+@media screen and (min-width: $bp-large) {
+	.cta {
+		.shade { background-color: $black; }
+
+		&:hover,
+		&:focus {
+			.shade { background-color: transparent; }
+		}
+
+		&.next-entry {
+			.text { width: 25%; }
+		}
+	}
+}

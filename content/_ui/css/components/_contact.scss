@@ -1,0 +1,86 @@
+/* ==========================================================================
+   COMPONENTS/_CONTACT.SCSS
+   ========================================================================== */
+
+.contact-info {
+	margin: 60px 0;
+
+	&.portland { margin-top: $space*4; }
+}
+
+.contact .flex { padding-top: $space*4; }
+
+.map-canvas { height: 80vh; }
+
+#instagram {
+	margin: 60px 0;
+
+	h2 {
+		display: block;
+		margin: 0 5% $space;
+	}
+	p.h3 { margin: 0 5%; }
+}
+
+#instafeed a {
+	display: block;
+	margin-bottom: 20%;
+	padding: 0 20%;
+}
+
+
+@media screen and (min-width: $bp-large) {
+	.contact-info { margin: 200px 0 100px; }
+
+	.contact .flex { padding-top: $space*4; }
+
+	.contact .flex.portland { padding: $space*8 2.5% $space*6; }
+
+	.map-canvas { height: 695px; }
+
+	#instagram { margin: 100px 0; }
+
+	#instafeed {
+		padding: $space*4 0 0 0;
+
+		a {
+			margin: 5% 0;
+			padding: 0 5%;
+			position: relative;
+			width: 33.33%;
+
+			&::before {
+				content: '';
+				background-color: $white-trans;
+				height: 100%;
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				text-align: center;
+				top: 0;
+				transition: opacity 250ms linear;
+				width: 100%;
+			}
+
+			&::after {
+				color: $blue;
+				font-family: icomoon;
+				font-size: 5em;
+				content: '\e901';
+				left: 50%;
+				opacity: 0;
+				position: absolute;
+				top: 50%;
+				transition: opacity 250ms linear;
+				transform: translateX(-50%) translateY(-50%);
+			}
+
+			&:hover::before,
+			&:hover::before,
+			&:hover::after,
+			&:focus::after {
+				opacity: 1;
+			}
+		}
+	}
+}

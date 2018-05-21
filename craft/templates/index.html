@@ -1,0 +1,6 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	<h1 class="offscreen">Turnstyle</h1>
+	<section id="home-loading"><img src="/_ui/img/global/t-01.gif" alt="loading..." /></section>
+{% endblock %}

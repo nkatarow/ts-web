@@ -1,0 +1,70 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	<article class="work-article">
+		{% set mobileHero = entry.mobileHeroImage.first() %}
+		{% set hero = entry.heroImage.first() %}
+
+		<style>
+			{% if mobileHero %}
+				.hero { background-image: url({{ mobileHero.url }}); }
+			{% else %}
+				.hero { background-image: url({{ hero.url }}); }
+			{% endif %}
+
+			@media screen and (min-width: 750px) {
+				.hero { background-image: url({{ hero.url }}); }
+			}
+		</style>
+		<div class="hero" style="color: {{ entry.heroFontColor }};" data-color="{{ entry.heroFontColor }}" data-font-color="{{ entry.heroFontColor }}"></div>
+
+		<a href="/work" title="Back to Work page" class="back"><span class="icon-x"></span></a>
+
+		<section class="hero-copy reveal" style="color: {{ entry.heroFontColor }};">
+			<p class="h2 caps title">{{ entry.heroHeadline|nl2br }}</p>
+			<h1 class="large med">{{ entry.title }}</h1>
+			<h2 class="large">{{ entry.projectTitle }}</h2>
+		</section>
+
+		<section class="work-intro" style="margin-top: 100vh;">
+			<div class="introduction reveal">
+				{{ entry.introduction }}
+			</div>
+
+			<div class="work-information reveal">
+				<h3 class="details gray">Client</h3>
+				<p class="details">{{ entry.title }}</p>
+
+				<h3 class="details gray">Disciplines</h3>
+				<p class="details">
+					{% nav category in entry.disciplines %}
+				    	<a href="{{ category.url() }}" title="View {{ category }} entries" class="blue">{{ category }}</a>{% if not loop.last%}, {% endif %}
+					{% endnav %}
+				</p>
+
+				{% for row in entry.additionalInformation %}
+					<h3 class="details gray">{{ row.header }}</h3>
+					<span class="details">{{ row.info }}</span>
+				{% endfor %}
+			</div>
+		</section>
+
+		{% include '/partials/_modules.html' %}
+
+		{% set params = craft.entries.section('workArticles') %}
+		{% set nextEntry = entry.getNext(params) %}
+		{% if nextEntry == null %}
+			{% set nextEntry = craft.entries.section('workArticles').first() %}
+		{% endif %}
+
+		{% set nextImage = nextEntry.ctaImage.first() %}
+		<a href="/work/{{ nextEntry.slug }}" title="Read {{ nextEntry.heroHeadline }}" class="cta next-entry" style="background-image: url({{ nextImage.url }});">
+			<div class="shade">
+				<div class="text reveal">
+					<h3 class="large margin-bottom">Next Project</h3>
+					<p class="h3 caps">{{ nextEntry.heroHeadline|nl2br }}</p>
+				</div>
+			</div>
+		</a>
+	</article>
+{% endblock %}

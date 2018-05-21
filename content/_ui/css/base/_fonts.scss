@@ -1,0 +1,108 @@
+/* ==========================================================================
+   BASE/_FONTS.SCSS
+   ========================================================================== */
+
+// Light(200) - Normal
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-Light.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-Light.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-Light.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-Light.woff") format("woff");
+    font-weight: 200;
+    font-style: normal;
+}
+
+// Light(200) - Italic
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-LightItalic.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-LightItalic.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-LightItalic.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-LightItalic.woff") format("woff");
+    font-weight: 200;
+    font-style: italic;
+}
+
+// Regular(300) - Normal
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-Regular.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-Regular.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-Regular.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-Regular.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+
+// Regular(300) - Italic
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-RegularItalic.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-RegularItalic.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-RegularItalic.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-RegularItalic.woff") format("woff");
+    font-weight: 300;
+    font-style: italic;
+}
+
+// Medium(400) - Normal
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-Medium.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-Medium.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-Medium.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-Medium.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+// Medium(400) - Italic
+@font-face {
+    font-family: "FoundersGrotesk";
+    src:url("/_ui/fonts/FoundersGroteskWeb-MediumItalic.eot");
+    src:url("/_ui/fonts/FoundersGroteskWeb-MediumItalic.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskWeb-MediumItalic.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskWeb-MediumItalic.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+}
+
+// Mono Regular(300) - Normal
+@font-face {
+    font-family: "FoundersGroteskMono";
+    src:url("/_ui/fonts/FoundersGroteskMonoWeb-Regular.eot");
+    src:url("/_ui/fonts/FoundersGroteskMonoWeb-Regular.eot?#iefix") format("embedded-opentype"),
+        url("/_ui/fonts/FoundersGroteskMonoWeb-Regular.woff2") format("woff2"),
+        url("/_ui/fonts/FoundersGroteskMonoWeb-Regular.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+
+// Icon Font
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/_ui/fonts/icomoon.eot?fk0m2x');
+  src:  url('/_ui/fonts/icomoon.eot?fk0m2x#iefix') format('embedded-opentype'),
+    url('/_ui/fonts/icomoon.ttf?fk0m2x') format('truetype'),
+    url('/_ui/fonts/icomoon.woff?fk0m2x') format('woff'),
+    url('/_ui/fonts/icomoon.svg?fk0m2x#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    @include icon();
+}
+.icon-instagram:before {
+  content: "\e901";
+}
+.icon-facebook:before {
+  content: "\e900";
+}
+.icon-twitter:before {
+  content: "\e902";
+}
+.icon-x:before {
+  content: "\e903";
+}

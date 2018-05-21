@@ -1,0 +1,61 @@
+/* ==========================================================================
+   COMPONENTS/_JOURNAL.SCSS
+   ========================================================================== */
+
+.journal-list {
+	margin-top: 100px;
+
+	article {
+		margin-bottom: $space*4;
+
+		a {
+			display: block;
+		}
+
+		.img {
+			padding: 0 20%;
+		}
+
+		.info {
+			padding: $space-double 5%;
+			color: $off-black;
+			transition: color 250ms linear;
+
+			p { margin-bottom: 0; }
+		}
+	}
+}
+
+@media screen and (min-width: $bp-large) {
+	.journal-list {
+		margin-top: 240px;
+
+		article {
+			padding: 5%;
+
+			a {
+				align-items: center;
+				display: flex;
+
+				&:hover,
+				&:focus {
+					.info { color: $blue; }
+				}
+			}
+
+			&:first-of-type { padding-top: 0; }
+
+			.img {
+				padding: 0;
+				width: 25%;
+			}
+
+			.info {
+				padding: 0 0 0 10%;
+				width: 75%;
+
+				h2, p { max-width: 70%; }
+			}
+		}
+	}
+}

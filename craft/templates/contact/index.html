@@ -1,0 +1,39 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	{% cache for 3 weeks %}
+		<h1 class="offscreen">Contact</h1>
+
+		<section class="contact-info">
+			<div class="flex reveal">
+				<div class="half">
+					<h2 class="gray large margin-bottom">Say Hello</h2>
+					<p class="h3 caps"><a href="mailto:{{ entry.email }}">{{ entry.email|nl2br }}</a></p>
+
+					<p class="h3 caps no-margin">P {{ entry.phoneNumber|nl2br }}</p>
+				</div>
+
+				<div class="half">
+					<h2 class="gray large margin-bottom">Seattle, Wa — Fremont</h2>
+					<p class="h3 caps">{{ entry.seattleAddress|nl2br }}</p>
+					<p class="large"><a href="{{ entry.seattleDirectionsUrl }}" title="Get Directions to Seattle Office" target="_blank">Get Directions</a></p>
+				</div>
+			</div>
+		</section>
+	{% endcache %}
+
+	<section class="map-canvas" id="map-canvas-1" data-address="{{ entry.seattleAddress|raw|replace({' ':'+', '\n':'+', '\r': '+'}) }}"></section>
+
+	<section id="instagram">
+		<h2 class="gray large margin-bottom">Socialize</h2>
+		<p class="h3 caps">
+			<a href="https://twitter.com/turnstylestudio" target="_blank">Twitter</a><br />
+			<a href="https://www.facebook.com/turnstyledesign/" target="_blank">Facebook</a><br />
+			<a href="https://www.instagram.com/turnstylestudio/" target="_blank">Instagram</a>
+		</p>
+
+		<ul id="instafeed" class="flex"></ul>
+	</section>
+
+	{% include '/partials/_cta.html' %}
+{% endblock %}

@@ -1,0 +1,31 @@
+/* ==========================================================================
+   COMPONENTS/_SS.SCSS
+   ========================================================================== */
+
+#ss {
+	background-color: #000;
+	height: 100vh;
+	padding: 2.702702vh 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 200;
+}
+
+.ss-row.owl-carousel {
+	height: 21.621622vh;
+	margin-bottom: 2.702702vh;
+	overflow: hidden;
+	width: 100vw;
+	z-index: 201;
+
+	.owl-item {
+		height: 21.621622vh;
+
+		img {
+			height: 100%;
+			padding-right: 2.702702vh;
+		}
+	}
+}

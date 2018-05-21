@@ -1,0 +1,67 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	{% cache for 3 weeks %}
+		<section class="offering-hero" data-font-color="#ffffff">
+			<div class="title reveal">
+				<p class="large">We Do</p>
+				<h1 class="h2 caps">{{ entry.title }}</h1>
+			</div>
+
+			<div class="flex reveal">
+				<div class="half">
+					{{ entry.introLeftColumn }}
+				</div>
+				<div class="half">
+					{{ entry.introRightColumn }}
+				</div>
+			</div>
+
+			<a href="/overview" title="Back to previous page" class="back"><span class="icon-x"></span></a>
+		</section>
+	{% endcache %}
+
+	<div class="featured-projects">
+		{% if entry.featuredProjects | length %}
+			<h2 class="h3 caps reveal">Featured<br />Projects</h2>
+			<section class="work-list offering">
+				{% set entries = entry.featuredProjects %}
+				{% for entry in entries %}
+					<article>
+						<a href="/work/{{ entry.slug }}" data-color="{{ entry.highlightColor }}" title="Read about {{ entry.title }}">
+							{% set img = entry.listImage.first() %}
+							{% if img %}
+								<img src="{{ img.url }}" class="lazy" alt="{{ img.title }}" />
+							{% endif %}
+
+							<div class="info">
+								<p class="large med">{{ entry.title }}</p>
+								<p class="large">{{ entry.projectTitle }}</p>
+							</div>
+						</a>
+					</article>
+				{% endfor %}
+			</section>
+		{% endif %}
+
+		{% cache for 3 weeks %}
+			<section class="flex">
+				<div class="half reveal">
+					<h3 class="large">We Also Do</h3>
+				</div>
+				<div class="half reveal">
+					<ul class="offerings">
+						<li><a href="/strategy" title="Read about our strategy offerings" class="h2 caps{% if craft.request.getSegment(1) == 'strategy' %} active{% endif %}">{% if craft.request.getSegment(1) == 'strategy' %}&mdash;{% endif %}Strategy</a></li>
+						<li><a href="/identity" title="Read about our identity offerings" class="h2 caps{% if craft.request.getSegment(1) == 'identity' %} active{% endif %}">{% if craft.request.getSegment(1) == 'identity' %}&mdash;{% endif %}identity</a></li>
+						<li><a href="/digital" title="Read about our digital offerings" class="h2 caps{% if craft.request.getSegment(1) == 'digital' %} active{% endif %}">{% if craft.request.getSegment(1) == 'digital' %}&mdash;{% endif %}digital</a></li>
+						<li><a href="/print" title="Read about our print offerings" class="h2 caps{% if craft.request.getSegment(1) == 'print' %} active{% endif %}">{% if craft.request.getSegment(1) == 'print' %}&mdash;{% endif %}print</a></li>
+						<li><a href="/packaging" title="Read about our packaging offerings" class="h2 caps{% if craft.request.getSegment(1) == 'packaging' %} active{% endif %}">{% if craft.request.getSegment(1) == 'packaging' %}&mdash;{% endif %}packaging</a></li>
+						<li><a href="/environment" title="Read about our environment offerings" class="h2 caps{% if craft.request.getSegment(1) == 'environment' %} active{% endif %}">{% if craft.request.getSegment(1) == 'environment' %}&mdash;{% endif %}environment</a></li>
+					</ul>
+				</div>
+			</section>
+		{% endcache %}
+	</div>
+
+	{% include '/partials/_cta.html' %}
+{% endblock %}

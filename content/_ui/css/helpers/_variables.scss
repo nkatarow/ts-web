@@ -1,0 +1,43 @@
+/* ==========================================================================
+   HELPERS/_VARIABLES.SCSS
+   ========================================================================== */
+
+//Colors
+$black: #000000;
+$black-trans: rgba(0,0,0,0.9);
+$off-black: #262626;
+$white: #ffffff;
+$off-white: #efefef;
+$white-trans: rgba(255,255,255,0.9);
+$gray: #afafaf;
+$dark-gray: #3f3f3f;
+$blue: #3c00ff;
+$highlight: #daff00;
+
+//Typography
+$founders: 'FoundersGrotesk', Helvetica, arial, sans-serif;
+$mono: 'FoundersGroteskMono', 'Lucida Console', Monaco, monospace;
+
+//Layout
+$max-width: 1470px;
+
+//Defaults
+$space: 1em;
+$space-and-half: $space*1.5;
+$space-double: $space*2;
+$space-triple: $space*3;
+$space-quad: $space*4;
+$space-half: $space/2;
+$space-quarter: $space/4;
+
+//Breakpoints
+$bp-small: 24em; // 384px
+$bp-small-2: 29.75em; // 476px
+$bp-small-3: 39.8em; // 636.8px
+$bp-med: 46.8em; // 748.8px
+$bp-med-2: 48em; // 768px
+$bp-large: 750px;
+$bp-large-2: 66em; // 1056px
+$bp-xl: 73em; // 1168px
+$bp-xxl: 89em; // 1424px
+$bp-xxxl: 93em; // 1488px

@@ -1,0 +1,10 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% set entry = craft.entries.id(101).first() %}
+{% block content %}
+	<section class="copy">
+		<h1 class="large">Page not found</h1>
+
+		<p>404 error - page not found. What’s worse, a hilarious 404 page can’t be found either. Click the Turnstyle logo to access the site navigation.</p>
+	</div>
+{% endblock %}

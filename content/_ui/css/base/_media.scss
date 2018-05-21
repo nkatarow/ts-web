@@ -1,0 +1,57 @@
+/* ==========================================================================
+   BASE/_MEDIA.SCSS
+   ========================================================================== */
+
+
+img, video, object {
+	width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    margin-bottom: $space;
+}
+
+figure {
+    margin-bottom: $space;
+
+    img { margin-bottom: $space-quarter; }
+}
+figcaption {
+    font-style: italic;
+}
+
+
+// Custom Modules
+.large-image {
+	margin-bottom: -3px;
+
+	&.framed { padding: 5%; }
+}
+
+.inset-image {
+	padding: 5%;
+	text-align: center;
+
+	img { width: auto; }
+}
+
+.video-module {
+	margin-bottom: -3px;
+
+	&.framed {
+		background-color: $white;
+		padding: 5%;
+	}
+}
+
+@media screen and (min-width: 750px) {
+  .inset-image img,
+  .inset-video video,
+  .img-with-desc img {
+    &.fifty { max-width: 50%; }
+    &.seventy-five { max-width: 75%; }
+    &.one-hundred { max-width: 100%; }
+  }
+}

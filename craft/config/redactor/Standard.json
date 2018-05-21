@@ -1,0 +1,21 @@
+{
+    "buttons": ["format","link"],
+    "plugins":["source"],
+    "toolbarFixed": true,
+    "formatting": ["p", "span"],
+    "formattingAdd": {
+        "med": {
+            title: 'Bold',
+            args: ['p', 'class', 'med', 'add']
+        },
+
+        "large": {
+            title: 'Large',
+            args: ['p', 'class', 'large', 'add']
+        },
+		"white": {
+			title: 'Color: White',
+            args: ['span', 'class', 'white', 'add']
+		}
+    }
+}

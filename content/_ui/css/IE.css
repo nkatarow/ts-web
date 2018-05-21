@@ -1,0 +1,52 @@
+/* ==========================================================================
+   IE.CSS
+   ========================================================================== */
+
+a img { border: 0; }
+
+#header .logo svg {
+	left: 5%;
+	position: absolute;
+	top: 50px;
+	height: 80px;
+}
+
+.ie9 .reveal,
+.ie9 .seq { opacity: 1 !important; }
+
+@media screen and (min-width: 750px) {
+	.ie9 .work-list article,
+	.ie9 .team-list li {
+		float: left;
+		width: 33.333333%;
+	}
+
+	.ie9 .flex,
+	.ie9 .team-list,
+	.ie9 .work-intro {
+	    *zoom: 1;
+	}
+	.ie9 .flex:before,
+	.ie9 .team-list:before,
+	.ie9 .work-intro:before,
+	.ie9 .flex:after,
+	.ie9 .team-list:after,
+	.ie9 .work-intro:after  {
+	    content: " "; /* 1 */
+	    display: table; /* 2 */
+	}
+
+	.ie9 .flex:after,
+	.ie9 .team-list:after,
+	.ie9 .work-intro:after {
+	    clear: both;
+	}
+
+	.ie9 .flex .half,
+	.ie9 .flex .third,
+	.ie9 .work-intro .introduction,
+	.ie9 .work-intro .work-information {
+		float: left;
+	}
+
+}

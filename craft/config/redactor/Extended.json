@@ -1,0 +1,62 @@
+{
+    "buttons": ["format","bold","italic","lists","link","file","image"],
+    "plugins":["source","fullscreen"],
+    "toolbarFixed": true,
+    "formatting": ["p", "span"],
+    "formattingAdd": {
+        "h1": {
+            title: 'H1',
+            args: ['p', 'class', 'h1', 'add']
+        },
+        "h2": {
+            title: 'h2',
+            args: ['p', 'class', 'h2', 'add']
+        },
+        "h3": {
+            title: 'H3',
+            args: ['p', 'class', 'h3', 'add']
+        },
+        "h4": {
+            title: 'H4',
+            args: ['p', 'class', 'h4', 'add']
+        },
+        "h5": {
+            title: 'h5',
+            args: ['p', 'class', 'h5', 'add']
+        },
+        "med": {
+            title: 'Bold',
+            args: ['p', 'class', 'med', 'add']
+        },
+        "caps": {
+            title: 'Caps',
+            args: ['p', 'class', 'caps', 'add']
+        },
+        "italic": {
+            title: 'Italic',
+            args: ['p', 'class', 'italic', 'add']
+        },
+        "details": {
+            title: 'Details',
+            args: ['p', 'class', 'details', 'add']
+        },
+        "large": {
+            title: 'Large',
+            args: ['p', 'class', 'large', 'add']
+        },
+		"blue": {
+			title: 'Color: Blue',
+            args: ['span', 'class', 'blue', 'add']
+		},
+		"gray": {
+			title: 'Color: Gray',
+            args: ['span', 'class', 'gray', 'add']
+		},
+		"white": {
+			title: 'Color: White',
+            args: ['span', 'class', 'white', 'add']
+		}
+
+    }
+
+}

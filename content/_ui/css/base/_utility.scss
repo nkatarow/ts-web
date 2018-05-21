@@ -1,0 +1,52 @@
+/* ==========================================================================
+   BASE/_UTILITY.SCSS
+   ========================================================================== */
+
+
+// Display
+.block {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.offscreen {
+    display: block;
+    left: -999999px;
+    position: absolute;
+    top: -999999px;
+}
+
+
+// Clearfix
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+
+// LINES, HRS, BORDERS
+.hr {
+    border-top: 1px solid gray;
+    display: block;
+
+    hr {
+        display: none;
+    }
+}
+
+
+// MISC
+::selection {
+	background: $highlight; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+	background: $highlight; /* Gecko Browsers */
+}

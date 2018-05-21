@@ -1,0 +1,198 @@
+{% for block in entry.modules %}
+	{% switch block.type %}
+
+		{% case 'largeImage' %}
+			<section class="work-module large-image {{ block.layoutOptions }} {{ block.spacingTop }} {{ block.spacingBottom }}">
+				{% set image = block.image.first() %}
+
+				<picture>
+					<!--[if IE 9]><video style="display: none;"><![endif]-->
+						<source srcset="{{ image.url }}" media="(min-width: 600px)" />
+						<img srcset="{{ image.getUrl('fullWidthMobile') }}" alt="{{ image.title }}" class="{% if block.layoutOptions == 'framed' %}reveal{% else %}full-reveal{% endif %}" />
+					<!--[if IE 9]></video><![endif]-->
+					<!--[if lte IE 9]><img src="{{ image.url }}" alt=""><![endif]-->
+				</picture>
+			</section>
+
+
+		{% case 'insetImage' %}
+			<section class="work-module inset-image change-background {{ block.spacingTop }} {{ block.spacingBottom }}" style="background-color: {{ block.backgroundColor }};">
+				{% set image = block.image.first() %}
+        {% set imgWidth = 'imgWidth' %}
+
+        {% if block.imageWidth == '75' %}
+          {% set imgWidth = 'seventy-five' %}
+        {% elseif block.imageWidth == '50' %}
+          {% set imgWidth = 'fifty' %}
+        {% elseif block.imageWidth == '100' %}
+          {% set imgWidth = 'one-hundred' %}
+        {% endif %}
+
+				<picture>
+					<!--[if IE 9]><video style="display: none;"><![endif]-->
+						<source srcset="{{ image.url }}" media="(min-width: 600px)" />
+						<img srcset="{{ image.getUrl('fullWidthMobile') }}" class="reveal {{ imgWidth }}" alt="{{ image.title }}" />
+					<!--[if IE 9]></video><![endif]-->
+					<!--[if lte IE 9]><img src="{{ image.url }}" alt=""><![endif]-->
+				</picture>
+			</section>
+
+		{% case 'insetVideo' %}
+			<section class="work-module inset-image change-background {{ block.spacingTop }} {{ block.spacingBottom }}" style="background-color: {{ block.backgroundColor }};" id="video-module-{{ loop.index }}">
+				{% set poster = block.posterImage.first() %}
+        {% set imgWidth = 'imgWidth' %}
+
+        {% if block.imageWidth == '75' %}
+          {% set imgWidth = 'seventy-five' %}
+        {% elseif block.imageWidth == '50' %}
+          {% set imgWidth = 'fifty' %}
+        {% elseif block.imageWidth == '100' %}
+          {% set imgWidth = 'one-hundred' %}
+        {% endif %}
+
+				{% if block.autoplay == '0' %}
+					<video id="player{{ loop.index }}" class="{{ imgWidth }}" style="background: transparent no-repeat url({{ poster.url }}); background-size: 100%; background-position: 50% 50%;" src="{{ block.vimeoEmbedUrl }}" {% if poster %}poster="/_ui/img/global/transparent.gif" {% endif %}preload="auto" controls></video>
+				{% else %}
+					<video id="player{{ loop.index }}" class="autoplay {{ imgWidth }}" style="width: {{ block.videoWidth }}%; background: transparent no-repeat url({{ poster.url }}); background-size: 100%; background-position: 50% 50%;" src="{{ block.vimeoEmbedUrl }}" {% if poster %}poster="/_ui/img/global/transparent.gif" {% endif %}preload="auto" autoplay webkit-playsinline playsinline muted loop></video>
+				{% endif %}
+			</section>
+
+		{% case 'imageWithDescription' %}
+			<section class="work-module img-with-desc {{ block.spacingTop }} {{ block.spacingBottom }} {{ block.position }}" style="background-color: {{ block.backgroundColor }};">
+				<div class="flex sequence" id="seq-{{ loop.index }}">
+					{% set image = block.image.first() %}
+          {% set imgWidth = 'imgWidth' %}
+
+          {% if block.imageWidth == '75' %}
+            {% set imgWidth = 'seventy-five' %}
+          {% elseif block.imageWidth == '50' %}
+            {% set imgWidth = 'fifty' %}
+          {% elseif block.imageWidth == '100' %}
+            {% set imgWidth = 'one-hundred' %}
+          {% endif %}
+
+					{% if block.position == 'left' %}
+						<div class="half img seq">
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+									<source srcset="{{ image.url }}" media="(min-width: 600px)" />
+									<img srcset="{{ image.getUrl('fullWidthMobile') }}" class="{{ imgWidth }}" alt="{{ image.title }}" />
+								<!--[if IE 9]></video><![endif]-->
+								<!--[if lte IE 9]><img src="{{ image.url }}" alt=""><![endif]-->
+							</picture>
+						</div>
+						<div class="half seq">
+							<div class="copy">
+								{{ block.description }}
+							</div>
+						</div>
+					{% else %}
+						<div class="half seq" id="seq-{{ loop.index }}">
+							<div class="copy">
+								{{ block.description }}
+							</div>
+						</div>
+						<div class="half img seq">
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+									<source srcset="{{ image.url }}" media="(min-width: 600px)" />
+									<img srcset="{{ image.getUrl('fullWidthMobile') }}"  class="{{ imgWidth }}" alt="{{ image.title }}" />
+								<!--[if IE 9]></video><![endif]-->
+								<!--[if lte IE 9]><img src="{{ image.url }}" alt=""><![endif]-->
+							</picture>
+						</div>
+					{% endif %}
+				</div>
+			</section>
+
+
+		{% case 'twoUpImages' %}
+			<section class="work-module two-up-images {{ block.spacingTop }} {{ block.spacingBottom }} {{ block.verticalAlignment }}" style="background-color: {{ block.backgroundColor }};">
+				<div class="flex sequence" id="seq-{{ loop.index }}">
+					<div class="half seq">
+						{% set leftimage = block.leftImage.first() %}
+						{% if leftimage %}
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+									<source srcset="{{ leftimage.url }}" media="(min-width: 600px)" />
+									<img srcset="{{ leftimage.getUrl('fullWidthMobile') }}" alt="{{ leftimage.title }}" />
+								<!--[if IE 9]></video><![endif]-->
+								<!--[if lte IE 9]><img src="{{ leftimage.url }}" alt=""><![endif]-->
+							</picture>
+						{% endif %}
+					</div>
+					<div class="half seq">
+						{% set rightimage = block.rightImage.first() %}
+						{% if rightimage %}
+							<picture>
+								<!--[if IE 9]><video style="display: none;"><![endif]-->
+									<source srcset="{{ rightimage.url }}" media="(min-width: 600px)" />
+									<img srcset="{{ rightimage.getUrl('fullWidthMobile') }}" alt="{{ rightimage.title }}" />
+								<!--[if IE 9]></video><![endif]-->
+								<!--[if lte IE 9]><img src="{{ rightimage.url }}" alt=""><![endif]-->
+							</picture>
+						{% endif %}
+					</div>
+				</div>
+			</section>
+
+
+		{% case 'centeredText' %}
+			<section class="work-module centered-text {{ block.spacingTop }} {{ block.spacingBottom }}" style="background-color: {{ block.backgroundColor }};">
+				<div class="container reveal">
+					<div class="copy">{{ block.text }}</div>
+				</div>
+			</section>
+
+
+		{% case 'video' %}
+			<section class="video-module{% if block.framed == '1' %} framed{% endif %}" id="video-module-{{ loop.index }}">
+				{% set poster = block.posterImage.first() %}
+
+				{% if block.autoplay == '0' %}
+					<video id="player{{ loop.index }}" src="{{ block.vimeoEmbedUrl }}" {% if poster %}poster="/_ui/img/global/transparent.gif" style="background: transparent no-repeat url({{ poster.url }}); background-size: 100%; background-position: 50% 50%;"{% endif %}preload="auto" controls></video>
+				{% else %}
+					<video id="player{{ loop.index }}" class="autoplay" src="{{ block.vimeoEmbedUrl }}" {% if poster %}poster="/_ui/img/global/transparent.gif" style="background: transparent no-repeat url({{ poster.url }}); background-size: 100%; background-position: 50% 50%;"{% endif %}preload="auto" autoplay webkit-playsinline playsinline muted loop></video>
+				{% endif %}
+			</section>
+
+
+		{% case 'carousel' %}
+			<section class="work-module {{ block.spacingTop }} {{ block.spacingBottom }}">
+				<div class="owl-default owl-carousel reveal">
+					{% for image in block.images %}
+						<img src="{{ image.url }}" style="width: {{ image.width }}px;" alt="{{ image.title }}" />
+					{% endfor %}
+				</div>
+			</section>
+
+
+	{% case 'twoColumnContent' %}
+		<section class="work-module {{ block.spacingTop }} {{ block.spacingBottom }}" style="background-color: {{ block.backgroundColor }};">
+			<div class="flex sequence" id="seq-{{ loop.index }}">
+				<div class="half seq">
+					{{ block.leftColumn }}
+				</div>
+				<div class="half seq">
+					{{ block.rightColumn }}
+				</div>
+			</div>
+		</section>
+
+	{% case 'logoSoup' %}
+		<section class="logo-soup {{ block.backgroundColor }} work-module spacing-top-2 spacing-bottom-2" id="seq-{{ loop.index }}">
+			{% if block.sectionHeader|length %}
+				{{ block.sectionHeader }}
+			{% endif %}
+
+			<div class="flex">
+				{% for row in block.logos %}
+					<div class="logo-img reveal">
+						{% set image = row.logo.first() %}
+						<img src="{{ image.url }}" alt="{{ image.title }}" />
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	{% endswitch %}
+{% endfor %}

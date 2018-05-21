@@ -1,0 +1,48 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	{% set entry = craft.entries.id(4).first() %}
+	{% set catSlug = craft.request.getSegment(2) %}
+
+	{% if catSlug != '' %}
+		{% set category = craft.categories.slug(catSlug).first() %}
+		{% set entries = craft.entries.section('workArticles').relatedTo(category) %}
+		{% set categoryTitle = category.title %}
+		<h1 class="offscreen">{{ categoryTitle }} | Work</h1>
+	{% else %}
+		{% set entries = craft.entries.section('workArticles') %}
+		{% set categoryTitle = 'All' %}
+		<h1 class="offscreen">Work</h1>
+	{% endif %}
+
+	<a href="#" id="filter-trigger" class="large med caps">Filter <span class="active-filter">{{ categoryTitle }}</span></a>
+
+	<aside class="filter-overlay">
+		<ul class="filter-list">
+			<li><a href="/work" title="View all entries" class="h2 caps{% if catSlug == '' %} active{% endif %} filter" data-color="#fff">{% if catSlug == '' %}&mdash; {% endif %}All</a></li>
+			{% for entry in craft.categories.group('work').find() %}
+				<li><a title="View {{ entry.title }} entries" href="/work/{{ entry.slug }}" class="h2 caps{% if entry.slug == catSlug %} active{% endif %} filter" data-color="#fff">{% if entry.slug == catSlug %}&mdash; {% endif %}{{ entry.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</aside>
+
+	<section class="work-list">
+		{% for entry in entries %}
+			<article class="reveal">
+				<a href="/work/{{ entry.slug }}" title="Read about {{ entry.title }}" data-color="{{ entry.highlightColor }}">
+					{% set img = entry.listImage.first() %}
+					{% if img %}
+						<img src="{{ img.url }}" class="lazy" alt="{{ img.title }}" />
+					{% endif %}
+
+					<div class="info">
+						<p class="large med">{{ entry.title }}</p>
+						<p class="large">{{ entry.projectTitle }}</p>
+					</div>
+				</a>
+			</article>
+		{% endfor %}
+	</section>
+
+	{% include '/partials/_cta.html' %}
+{% endblock %}

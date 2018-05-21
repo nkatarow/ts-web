@@ -1,0 +1,104 @@
+{% extends (craft.request.isAjax and not craft.request.isLivePreview) ? "_ajax-layout" : "_layout" %}
+
+{% block content %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var i = 1,
+				adjsAvailable = $('#adjective .blue').length,
+				timer = 100;
+
+			setTimeout(function(){
+				doIt();
+			}, 500);
+
+			$('#adjective').click(function(){
+				if (i <= (adjsAvailable - 14)) {
+					doIt();
+				} else {
+					i = 0;
+					doIt();
+				}
+			});
+
+			var doIt = function() {
+				loop = 0;
+				timer = 100;
+				setTimeout(loopIt, timer, loop);
+			};
+
+			var loopIt = function() {
+				if (loop < 14) {
+					if (loop > 6) { timer = timer + 100 }
+
+					if (i > 0) {
+						$('#adjective .blue').css('display', 'none');
+						$('#adjective #blue-' + i).css('display', 'block');
+					}
+					i++;
+					loop++;
+
+					setTimeout(loopIt, timer);
+				}
+			}
+		});
+	</script>
+
+	{% cache for 3 weeks %}
+		<h1 class="offscreen">Studio</h1>
+		<div class="studio-landing">
+			<section class="flex work-module spacing-bottom-2 reveal">
+				<div class="half random">
+					<h2 class="h2 caps">A<br />
+						<div id="adjective">
+							{% for entry in craft.entries.section('adjectives').order('RAND()').limit('1') %}
+								<span class="blue" id="blue-0">{{ entry.title }}</span>
+							{% endfor %}
+							{% for entry in craft.entries.section('adjectives').order('RAND()') %}
+								<span class="blue" style="display: none;" id="blue-{{ loop.index }}">{{ entry.title }}</span>
+							{% endfor %}
+						</div>
+						Design<br />Studio
+					</h2>
+				</div>
+				<div class="half">
+					{{ entry.introRightColumn }}
+				</div>
+			</section>
+		{% endcache %}
+
+		{% include '/partials/_modules.html' %}
+
+		<section id="team" class="dark">
+			<h2 class="h3 reveal">{{ entry.teamHeader|nl2br }}</h2>
+
+			<ul class="team-list">
+				{% for entry in craft.entries.section('team').order('RAND()') %}
+					<li class="reveal">
+						<div>
+							{% set img = entry.teamMemberImage.first() %}
+							<img src="{{ img.url }}" alt="{{ img.title }}" />
+
+							<p class="large info">
+								<strong>{{ entry.title }}</strong><br />
+								{{ entry.jobTitle }}
+							</p>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+
+		{% cache for 3 weeks %}
+			<section class="flex work-module spacing-top-2 spacing-bottom-2 sequence" id="seq-100">
+				<div class="half seq reveal">
+					<h2 class="h3 caps">Featured<br />Press<br />&amp;<br />Awards</h2>
+				</div>
+				<div class="half seq reveal" data-anijs="if: animationend, on: #seq-100, do: fadeInUp animated">
+					{{ entry.pressAwards }}
+				</div>
+			</section>
+		{% endcache %}
+	</div>
+
+	{% include '/partials/_cta.html' %}
+{% endblock %}
